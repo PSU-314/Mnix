@@ -35,6 +35,12 @@ kvmmake(void)
   // PLIC
   kvmmap(kpgtbl, PLIC, PLIC, 0x4000000, PTE_R | PTE_W);
 
+    // map the PCIe ECAM (config space) region.
+  kvmmap(kpgtbl, ECAM_BASE, ECAM_BASE, ECAM_SIZE, PTE_R | PTE_W);
+
+  // map the PCI MMIO window, where device BARs will be placed.
+  kvmmap(kpgtbl, PCI_MMIO_BASE, PCI_MMIO_BASE, PCI_MMIO_SIZE, PTE_R | PTE_W);
+
   // map kernel text executable and read-only.
   kvmmap(kpgtbl, KERNBASE, KERNBASE, (uint64)etext - KERNBASE, PTE_R | PTE_X);
 

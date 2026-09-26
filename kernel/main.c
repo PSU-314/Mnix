@@ -24,6 +24,7 @@ main()
     trapinithart();     // install kernel trap vector
     plicinit();         // set up interrupt controller
     plicinithart();     // ask PLIC for device interrupts
+    pci_init();
     binit();            // buffer cache
     iinit();            // inode table
     fileinit();         // file table

@@ -18,6 +18,9 @@ void            bwrite(struct buf*);
 void            bpin(struct buf*);
 void            bunpin(struct buf*);
 
+// pci.c
+void pci_init(void);
+
 // console.c
 void            consoleinit(void);
 void            consoleintr(int);

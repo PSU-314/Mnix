@@ -29,6 +29,17 @@
 #define CLINT_BASE  0x02000000L
 #define CLINT(hart) (CLINT_BASE + (hart) * 4)
 
+// qemu -machine virt puts a Generic PCIe Root Complex here.
+// the config space (ECAM) for bus 0 is a 1MB window:
+// 32 devices * 8 functions * 4KB config space each.
+#define ECAM_BASE   0x30000000L
+#define ECAM_SIZE   0x100000L
+
+// PCI devices' BARs get mapped into this MMIO window.
+// the e1000 needs 128KB (0x20000) for its BAR0; give it room.
+#define PCI_MMIO_BASE 0x40000000L
+#define PCI_MMIO_SIZE 0x20000L
+
 // qemu puts platform-level interrupt controller (PLIC) here.
 #define PLIC                 0x0c000000L
 #define PLIC_PRIORITY        (PLIC + 0x0)
